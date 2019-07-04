@@ -1,0 +1,51 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+    Ext.onReady(function() {
+
+        Ext.define('Usuario', {
+
+            nome : '',
+            senha : '',
+
+            constructor : function(options) {
+
+                Ext.apply(this,  options || {});
+
+                console.log('constructor foi chamado');
+            },
+            
+            login : function() {
+                console.log('fazendo login...');
+            },
+
+            logout : function() {
+                console.log('fazendo logout...');
+            }
+        }, 
+
+            function() {
+                console.log('Callback foi chamado');
+            }
+        );
+        
+        //Instanciando uma classe
+        var usuario = Ext.create('Usuario', {
+            nome : 'Joao Pedro',
+            senha : '1234'
+        });
+
+        console.log(usuario);
+
+    });
+</script>
+
+</html>
