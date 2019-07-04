@@ -1,0 +1,66 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.define('Aula07.mixins.Tocar', {
+
+        tocar : function() {
+            console.log('Tocando instrumento...');
+        }
+
+    });
+
+    Ext.define('Aula07.mixins.Afinar', {
+
+        afinar : function() {
+            console.log('Afinando instrumento...');
+        }
+
+    });
+
+    Ext.define('Aula07.isntrumento.Violao', {
+
+        //Aqui serão definidos os mixins que a classe Violao quer utilizar
+        mixins : {
+            tocarInstrumento : 'Aula07.mixins.Tocar',
+            afinarIntrumento : 'Aula07.mixins.Afinar'
+        }
+
+    });
+
+    Ext.define('Aula07.isntrumento.Piano', {
+
+        //Aqui serão definidos os mixins que a classe Violao quer utilizar
+        mixins : {
+            asdasd : 'Aula07.mixins.Tocar',
+            asdaddsad : 'Aula07.mixins.Afinar'
+        }
+
+    });
+
+    Ext.onReady(function() {
+
+        //Cria a isntancia
+        var violao = Ext.create('Aula07.isntrumento.Violao');
+        //chamar a função
+        violao.tocar();
+        violao.afinar();
+
+        //Cria a isntancia
+        var piano = Ext.create('Aula07.isntrumento.Piano');
+        //chamar a função
+        piano.tocar();
+        piano.afinar();
+    });
+
+</script>
+
+</html>
