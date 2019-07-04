@@ -1,0 +1,74 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.define('Usuario', {
+
+        /*Configuração de classe. Declarando os atributos da classe dentro do 
+        config, ele automaticamnte cria 4 métodos para nós, os métodos: 
+        (get, set, reset e aply)*/
+        config: {
+            nome: '',
+            senha: ''
+        },
+        
+        setNome: function(n){
+            this.nome = n + '*';
+        }
+    });
+
+    Ext.define('Calculadora', {
+
+        statics: {
+            numero: 0,
+
+            soma: function(num1, num2){
+                return num1 + num2;
+            }
+        },
+
+        contructor: function(){
+
+            this.statics().numero++;
+        }
+    });
+
+    Ext.define('Constantes', {
+
+        singleton:  true,
+
+        URL_BLOG: 'http://loiane.com',
+
+        URL_BLOG_EN: 'http://loianegroner.com',
+    });
+
+    Ext.onReady(function() {
+
+        /*var usuario = Ext.create('Usuario');
+        usuario.setNome('Joao');
+        usuario.setSenha('1234');
+        console.log(usuario.getNome());
+        console.log(usuario.getSenha());*/
+
+        /*console.log(Calculadora.numero);
+        var calc = Ext.create('Calculadora');
+        console.log(Calculadora.numero);
+
+        console.log(Calculadora.soma(1,2));*/
+
+        //var cons = Ext.create('Constantes'); NÃO PODE
+
+        console.log(Constantes.URL_BLOG);
+    });
+
+</script>
+
+</html>
