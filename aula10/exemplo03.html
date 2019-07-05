@@ -1,0 +1,33 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="extjs/ext-dev.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.Loader.setConfig({
+        anable: true,
+        paths: {
+            'CursoExt4' : 'js',
+            'Ext' : 'extjs/src'
+        } 
+        //CursoExt4 está apontando para pasta js
+    });
+    
+    Ext.require('CursoExt4.noDeadLock.ClasseA');
+
+    Ext.onReady(function() {
+
+        //Aqui em vez de CursoExt4 será a pasta js que  foi indicada no loader
+        Ext.create('CursoExt4.noDeadLock.ClasseA');
+
+    });
+
+</script>
+
+</html>
