@@ -1,0 +1,71 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.define('Funcionario', {
+        extend: 'Ext.data.Model',
+
+        //fields são os campos, onde declaramos um array dos campos.
+        fields: [
+            {name: 'nome'}, //tipo auto
+            {name: 'idade', type: 'int'},
+            {name: 'salario', type: 'float'},
+            {name: 'ativo', type: 'boolean'},
+            {name: 'nasc', type: 'date', dateFormat: 'd/m/Y'},
+            {name: 'usuario', type: 'string'},
+            {name: 'email', type: 'string',
+                //Passa um valor e qual o registro do funcionario por parâmetro
+                convert: function (value, record) {
+                    //Retorna o valor usuário + o email
+                    return record.get('usuario') + '@email.com';
+                }
+            },
+            {name: 'genero', type: 'string'}
+        ],
+
+        // Validations é um array de configurações
+        validations: [
+            //O 1° parâmetro é o tipo de validação, e o 2° é para qual campo
+            {type: 'presence', field: 'nome'},
+            {type: 'presence', field: 'usuario'},
+            {type: 'presence', field: 'idade'},
+            {type: 'length', field: 'usuario', min: 3, max: 10},
+            {type: 'format', field: 'nome', matcher: /([a-z]+)/},
+            {type: 'inclusion', field: 'genero', list:['F', 'M']},
+            {type: 'exclusion', field: 'idade', list:[0]}
+        ]
+    });
+
+    Ext.onReady(function() {
+
+        var funcionario = Ext.create('Funcionario',{
+            idade: 25,
+            ativo: true,
+            nome: 'Joao',
+            usuario: 'joao',
+            genero: 'M'
+        });
+
+        console.log(funcionario);
+
+        // Vai validar se existem erros ou não e passar para a variável errors
+        var errors = funcionario.validate();
+
+        console.log(errors.isValid());
+
+        console.log(errors.items);
+
+        // Mostra os erros de um campo específico
+        console.log(errors.getByField('nome'));
+    });
+</script>
+
+</html>
