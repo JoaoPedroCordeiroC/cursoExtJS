@@ -1,0 +1,17 @@
+{
+    "id": 1,
+    "nome": 'Joao',
+    "sobrenome": 'Cordeiro',
+    "telefones": [
+        {
+            "id": 11,
+            "ddd": '46',
+            "numero": '9988-7766'
+        },
+        {
+            "id": 12,
+            "ddd": '46',
+            "numero": '9876-4321'
+        }
+    ]
+}
