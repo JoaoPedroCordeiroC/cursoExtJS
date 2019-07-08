@@ -1,17 +1,24 @@
 {
     "id": 1,
-    "nome": 'Joao',
-    "sobrenome": 'Cordeiro',
+    "nome": "Joao",
+    "sobrenome": "Cordeiro",
     "telefones": [
         {
             "id": 11,
-            "ddd": '46',
-            "numero": '9988-7766'
+            "ddd": "46",
+            "numero": "9988-7766"
         },
         {
             "id": 12,
-            "ddd": '46',
-            "numero": '9876-4321'
+            "ddd": "46",
+            "numero": "9876-4321"
         }
-    ]
+    ],
+
+    "endereco": {
+        "id": 14,
+        "logradouro": "Rua legal",
+        "numero": "100",
+        "complemento": "apt 10"
+    }
 }

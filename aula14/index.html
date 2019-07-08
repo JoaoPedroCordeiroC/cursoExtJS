@@ -81,6 +81,12 @@
 
                     console.log('Numero pertence a ' + p.get('nome'));
                 });
+
+                //Quando é um relacionamento hasOne o Ext também cria um
+                //geter getEndereco().
+                var end = pessoa.getEndereco();
+
+                console.log(end.get('logradouro') + ' ' + end.get('numero'));
             }
         });
     });
