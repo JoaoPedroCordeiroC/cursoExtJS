@@ -1,0 +1,57 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.define('Contato', {
+        extend: 'Ext.data.Model',
+
+        fields: [
+            {name: 'id', type: 'int'},
+            {name: 'nome', type: 'string'},
+            {name: 'email', type: 'string'}
+        ],
+
+        // O proxy diz qual a maneira que vamos comunicar com o servidor
+        proxy: {
+            type: 'ajax',
+            url: 'contatos/lista.json',
+            format: 'json'
+        }
+    })
+
+    Ext.define('ContatosStore', {
+        extend: 'Ext.data.Store',
+        model: 'Contato',
+
+        proxy: {
+            type: 'ajax',
+            url: 'contatos/lista.json',
+            format: 'json'
+        },
+
+        autoLoad: true
+    });
+
+    Ext.onReady(function() {
+
+        var store = Ext.create('ContatosStore');
+
+        console.log(store);
+        
+        Contato.load(1, {
+            success: function (contato) {
+                console.log('Nome do contato é ' + contato.get('nome'));
+            }
+        });
+    });
+</script>
+
+</html>
