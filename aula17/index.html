@@ -1,0 +1,52 @@
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.define('Lista', {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'id', type: 'int'},
+            {name: 'desc', type: 'string'}
+        ]
+    });
+
+    Ext.define('SessionStore', {
+        extend: 'Ext.data.Store',
+        model: 'Lista',
+
+        proxy: {
+            type: 'sessionstorage',
+            id: 'lista'
+        }
+
+    });
+
+    Ext.onReady(function() {
+
+        //Criando a instancia da sessionStore
+        var store = Ext.create('SessionStore');        
+
+        //Carrega os dados da store
+        store.load();
+
+        // Adicionando registros na store
+        store.add({desc:"gravar aula 16"});
+        store.add({desc:"gravar aula 17"});
+        store.add({desc:"gravar aula 18"});
+
+        // Salvando os registros na store
+        store.sync();
+    });
+</script>
+
+</html>
