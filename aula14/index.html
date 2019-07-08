@@ -26,7 +26,10 @@
             format: 'json'
         },
 
-        hasMany: {model: 'Telefone', foreignKey: 'pessoaId'}
+        //Pode ter 1 ou vários do modelo telefone
+        hasMany: {model: 'Telefone', foreignKey: 'pessoaId'},
+
+        hasOne: {model: 'Endereco', foreignKey: 'pessoaId'}
     });
 
     Ext.define('Telefone', {
@@ -36,9 +39,11 @@
             {name: 'id', type: 'int'},
             {name: 'ddd', type: 'string'},
             {name: 'numero', type: 'string'},
-            {name: 'pessoaId', type: 'string'}
+            {name: 'pessoaId', type: 'int'}
         ],
 
+        // O telefone pertence a uma pessoa     E se o atributo pessoaId tivesse
+        //declarado como pessoa_id, não seria necessário declarar a foreignKey
         belongsTo: {model: 'Pessoa', foreignKey: 'pessoaId'}
 
     });
@@ -51,7 +56,7 @@
             {name: 'logradouro', type: 'string'},
             {name: 'numero', type: 'string'},
             {name: 'complemento', type: 'string'},
-            {name: 'pessoa_id', type: 'string'}
+            {name: 'pessoaId', type: 'int'}
         ],
 
     });
@@ -60,8 +65,9 @@
 
         Pessoa.load(1, {
             success: function (pessoa) {
-                console.log('Nome da pessoa é ' + pessoa.get('nome'));
+                console.log('Nome da pessoa eh: ' + pessoa.get('nome'));
 
+                //O ExtJS gera os geters e seters automaricamente
                 //telefone é o nome da classe + o S por que é um hasmany
                 var telefones = pessoa.telefones();
             
@@ -69,10 +75,12 @@
 
                     console.log(tel.get('ddd') + ' ' + tel.get('numero'));
 
+                    //Quando declaramos o belongsTo no telefone ele gera um geter
+                    //da pessoa que pertence
                     var p = tel.getPessoa();
 
                     console.log('Numero pertence a ' + p.get('nome'));
-                })
+                });
             }
         });
     });
