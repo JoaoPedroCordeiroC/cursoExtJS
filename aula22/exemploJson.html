@@ -1,0 +1,95 @@
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.define('Contato', {
+        extend: 'Ext.data.Model',
+
+        fields: [
+            {name: 'id', type: 'int'},
+            {name: 'nome', type: 'string'},
+            {name: 'email', type: 'string'}
+        ],
+
+    });
+
+    Ext.define('ContatosStore', {
+        extend: 'Ext.data.Store',
+        model: 'Contato',
+
+        proxy: {
+            type: 'rest',
+            
+            //Uma url para fazer todas as operações CRUD
+            url: 'php/json/contatos.php',
+
+            reader: {
+                type: 'json',    //Formato json ou xml
+                root: 'contatos'
+            },
+
+            writer: {
+                type: 'json',
+                root: 'contatos',
+                writeAllFields: true,
+                encode: true,
+                allowSingle: true
+            }
+        },
+
+        autoLoad: true,
+
+        // Salva automaticamente
+        autoSync: true
+    });
+
+    Ext.onReady(function() {
+
+        var store = Ext.create('ContatosStore');
+
+        //console.log(store.data);
+
+        store.on('load', function(s){
+            console.log(s.data);
+
+            //Cria um registro
+            /*var contato = Ext.create('Contato', {
+                nome: 'Joao Pedro',
+                email: 'me@joao.com'
+
+            });*/
+
+            //CREATE
+            //s.add(contato); 
+            //É a mesma coisa que usar 
+            //s.add({nome: 'Joao Pedro', email: 'me@email.com'});
+            //s.insert(0,contato); //insere contato na 1° posição da  store
+            
+            //UPDATE
+            //var contatoAtualizado = s.getAt(0); //s.get(14)
+            //contatoAtualizado.set('nome', 'asfkaskdfakfasda');
+
+            //DELETE
+            //s.remove(modelo);
+            //s.removeAt(index)
+            //s.removeAll();    remove tudo //Delete na tabela
+            //s.remove(s.getAt(2));
+
+            //Salva
+            //s.sync(); 
+        });
+
+    });
+</script>
+
+</html>
