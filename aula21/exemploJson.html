@@ -1,0 +1,91 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css">
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+
+</head>
+
+<body></body>
+
+<script type="text/javascript">
+
+    Ext.define('Contato', {
+        extend: 'Ext.data.Model',
+
+        fields: [
+            {name: 'id', type: 'int'},
+            {name: 'nome', type: 'string'},
+            {name: 'email', type: 'string'}
+        ],
+
+    });
+
+    Ext.define('ContatosStore', {
+        extend: 'Ext.data.Store',
+        model: 'Contato',
+
+        proxy: {
+            type: 'ajax',
+            //url: 'php/json/listaContatos.php',
+            
+            // Permite o mapeamento de todas as URL's que serão usadas no CRUD
+            api: {
+                create: 'php/json/criaContato.php',
+                read: 'php/json/listaContatos.php',
+                updete: 'php/json/atualizaContato.php',
+                destroy: 'php/json/deletaContato.php'
+            },
+
+            reader: {
+                type: 'json',    //Formato json ou xml
+                root: 'contatos'
+            },
+
+            writer: {
+                type: 'json',
+                root: 'contatos',
+                writeAllFields: true,
+                encode: true,
+                allowSingle: true
+            }
+        },
+
+        autoLoad: true,
+
+        // Salva automaticamente
+        autoSync: true
+    });
+
+    Ext.onReady(function() {
+
+        var store = Ext.create('ContatosStore');
+
+        //console.log(store.data);
+
+        store.on('load', function(s){
+            console.log(s.data);
+
+            //Cria um registro
+            var contato = Ext.create('Contato', {
+                nome: 'Joao Pedro',
+                email: 'me@joao.com'
+
+            });
+
+            //s.add(contato); 
+            /*É a mesma coisa que usar 
+              s.add({nome: 'Joao Pedro', email: 'me@email.com'}); */
+            //s.insert(0,contato); //insere contato na 1° posição da  store
+            
+            var contatoAtualizado = s.getAt(0); //s.get(14)
+            contatoAtualizado.set('nome', 'asfkaskdfakfasda');
+
+            //Salva
+            //s.sync();
+        });
+
+    });
+</script>
+
+</html>
