@@ -343,4 +343,50 @@ Ext.onReady(function(){
         }
     });
 
+    //-------------- AQUI ESTÃO OS BOTÕES CUSTOMIZADOS -----------------------
+
+    Ext.create('Ext.Button', {
+        text: 'Botão - Customizado',
+        renderTo: 'btnYesNoCancelCustom',
+        handler: function() {
+            Ext.MessageBox.show({
+                title:'Botão - Customizado',
+                msg: 'Você tem certeza que deseja apagar o registro?',
+                buttons: Ext.MessageBox.YESNOCANCEL,
+                //Customizando texto dos botões
+                buttonText: {
+                    yes: 'Sim',
+                    no: 'Não',
+                    cancel: 'Cancelar'
+                },
+
+                fn: function(btn){
+                    console.log('apertou o botão ' + btn);
+                    if (btn == 'yes') {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'Registro apagado com sucesso!');
+                    } else if (btn == 'no') {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'O registro não foi apagado!');
+                    } else {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'Operação cancelada!');
+                    };
+                }
+            });
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Icone - Customizado',
+        renderTo: 'btnCustomIcon',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Mensagem!',
+                msg: 'Eu gosto de ExtJS!',
+                icon: Ext.MessageBox.WARNING
+            });
+        }
+    });
+ 
 });
