@@ -115,4 +115,174 @@ Ext.onReady(function(){
         }
     });
 
+    // ---------------------- AQUI ESTÃO OS BOTÕES ---------------------------
+
+    Ext.create('Ext.Button', {
+        text: 'Botão - CANCEL',
+        renderTo: 'btnCancel',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Botão - Cancelar!',
+                msg: 'Por favor, cancele a operação!',
+                icon: Ext.MessageBox.WARNING,
+                buttons: Ext.MessageBox.CANCEL,
+                //Função de callback
+                fn: function(btn) {
+                    console.log('Apertou o botão ' + btn);
+                }
+            });
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Botão - NO',
+        renderTo: 'btnNo',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Botão - No!',
+                msg: 'Você gosta de alface?',
+                buttons: Ext.MessageBox.NO,
+                //Função de callback
+                fn: function(btn) {
+                    console.log('Apertou o botão ' + btn);
+                }
+            });
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Botão - OK',
+        renderTo: 'btnOk',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Botão - OK!',
+                msg: 'Eu gostei de ExtJS',
+                buttons: Ext.MessageBox.OK,
+                //Função de callback
+                fn: function(btn) {
+                    console.log('Apertou o botão ' + btn);
+                }
+            });
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Botão - OKCANCEL',
+        renderTo: 'btnOkCancel',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Botão - OKCANCEL!',
+                msg: 'Tem certeza que deseja apagar o registro?',
+                buttons: Ext.MessageBox.OKCANCEL,
+                //Função de callback
+                fn: function(btn) {
+                    console.log('Apertou o botão ' + btn);
+                    if (btn == 'ok') {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'Registro apagado com sucesso!');
+                    };
+                }
+            });
+        }
+    });
+
+    
+    Ext.create('Ext.Button', {
+        text: 'Botão - YES',
+        renderTo: 'btnYes',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Botão - YES!',
+                msg: 'Você gosta de bolo de chocolate?',
+                buttons: Ext.MessageBox.YES,
+                //Função de callback
+                fn: function(btn) {
+                    console.log('Apertou o botão ' + btn);
+                }
+            });
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Botão - YESNO',
+        renderTo: 'btnYesNo',
+        handler: function() {
+            Ext.MessageBox.show({
+                title:'Botão - YESNO',
+                msg: 'Você tem certeza que deseja apagar o registro?',
+                buttons: Ext.MessageBox.YESNO,
+                fn: function(btn){
+                    console.log('apertou o botão ' + btn);
+                    if (btn == 'yes') {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'Registro apagado com sucesso!');
+                    };
+                }
+            });
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Botão - YESNOCANCEL',
+        renderTo: 'btnYesNoCancel',
+        handler: function() {
+            Ext.MessageBox.show({
+                title:'Botão - YESNOCANCEL',
+                msg: 'Você tem certeza que deseja apagar o registro?',
+                buttons: Ext.MessageBox.YESNOCANCEL,
+                fn: function(btn){
+                    console.log('apertou o botão ' + btn);
+                    if (btn == 'yes') {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'Registro apagado com sucesso!');
+                    } else if (btn == 'no') {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'O registro não foi apagado!');
+                    } else {
+                        Ext.MessageBox.alert('Mensagem', 
+                            'Operação cancelada!');
+                    };
+                }
+            });
+        }
+    });
+    
+    Ext.create('Ext.Button', {
+        text: 'Show - Prompt',
+        renderTo: 'btnShowPrompt',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Show - Prompt',
+                msg: 'Você gosta de bolo de chocolate por que motivo?',
+                //Propriedade define se é prompt
+                prompt: true,
+                width: 400,
+                buttons: Ext.MessageBox.OK,
+                fn: function(btn, text) {
+                    console.log('Apertou o botão ' + btn);
+                    console.log('Texto escrito: ' + text);
+                }
+            });
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Show - Prompt Multiline',
+        renderTo: 'btnShowPromptMult',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Show - Prompt',
+                msg: 'Você gosta de bolo de chocolate por que motivo?',
+                //Automaticamente irá fazer um prompt com várias linhas
+                multiline: true,
+                width: 400,
+                buttons: Ext.MessageBox.OK,
+                fn: function(btn, text) {
+                    console.log('Apertou o botão ' + btn);
+                    console.log('Texto escrito: ' + text);
+                }
+            });
+        }
+    });
+
 });
