@@ -285,4 +285,62 @@ Ext.onReady(function(){
         }
     });
 
+    // ------------------ AQUI ESTÃO AS BARRAS DE PROGRESSO ---------------
+
+    Ext.create('Ext.Button', {
+        text: 'Show - Progresso',
+        renderTo: 'btnProgress',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Progresso',
+                msg: 'Carregando os dados...',
+                progressText: 'Carregando...',
+                progress: true,
+                //Não irá permitir fechar
+                closable: false,
+                width: 300
+            
+            });
+
+            //Função do temporizador de carregamento
+            var f = function(v)  {
+                return function() {
+                    if (v == 12) {
+                        Ext.MessageBox.hide();
+                        Ext.MessageBox.alert('Pronto', 'Os dados foram carregados!');
+                    } else {
+                        var i = v/11;
+                        Ext.MessageBox.updateProgress(i, Math.round(100 * i) + '%');
+                    };
+                };   
+            };
+
+            for (var i = 1; i < 13; i ++) {
+                setTimeout(f(i), i * 500);
+            }
+        }
+    });
+
+    Ext.create('Ext.Button', {
+        text: 'Show - Wait',
+        renderTo: 'btnWait',
+        handler: function() {
+            Ext.MessageBox.show({
+                title: 'Espere',
+                msg: 'Salvando os dados...',
+                wait: true,
+                waitConfig: {interval: 200},
+                //Não irá permitir fechar
+                closable: false,
+                width: 300
+            
+            });
+
+            setTimeout(function() {
+                Ext.MessageBox.hide();
+                Ext.MessageBox.alert('Pronto', 'Os dados foram salvos!');
+            }, 8000);
+        }
+    });
+
 });
