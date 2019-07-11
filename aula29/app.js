@@ -56,7 +56,7 @@ Ext.onReady(function() {
             menu: Ext.create('Ext.menu.ColorPicker', {
                 value: '000000',
                 listeners: {
-                    select: {
+                    select : {
                         fn: function(menu, color, opt){ 
                             Ext.Msg.alert('Cor Selecionada', 'Você selecionou ' + color);
                         }
