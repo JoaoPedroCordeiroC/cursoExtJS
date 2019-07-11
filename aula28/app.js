@@ -7,8 +7,16 @@ Ext.onReady(function() {
         text: 'Botão pequeno',
         renderTo: 'btn1',       //Renderiza para o lugar passado
         tooltip: 'Exemplo de tooltip',
-        handler: function() {
-            console.log('Botão pequeno!');
+        listeners: {
+            click: function(btn) {
+                btn.setText('Cliquei no botão');
+            },
+            mouseover: function(btn) {
+                btn.setText('Passei o mouse')
+            },
+            mouseout: function(btn) {
+                btn.setText('Tirei o mouse')
+            }
         }
     });
 
