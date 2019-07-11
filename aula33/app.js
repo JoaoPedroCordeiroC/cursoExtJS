@@ -3,7 +3,7 @@ Ext.define('Curso.Janela', {
 
     height: 400,
     width:500,
-    title: 'Aula 32  - Anchor Layout',
+    title: 'Aula 33  - Anchor Layout',
 
     autoShow: true,
 
