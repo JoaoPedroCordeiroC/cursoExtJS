@@ -9,7 +9,8 @@ Ext.define('Curso.Janela', {
     layout: {
         type: 'hbox',
         // Stretch pegará toda a altura do container pai para todos os items panels
-        // O stretchmax pegará a altura do panel maior e jogar para os outros 
+        // O stretchmax pegará a altura do panel maior e jogar para os outros.
+        // Podemos usar também o top/center/bottom
         align: 'stretchmax'
     },
     items: [
@@ -36,11 +37,7 @@ Ext.define('Curso.Janela', {
                 xtype: 'toolbar',
                 dock: 'bottom',
                 items: [{
-                    text: 'Voltar',
-                    handler: function(btn, e, eOpts) {
-                        var win = btn.up('window');
-                        win.getLayout().setActiveItem(0);
-                    }
+                    text: 'Next'
                 }]
             }],
             height: 300,
