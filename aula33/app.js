@@ -13,7 +13,6 @@ Ext.define('Curso.Janela', {
 
     // Definimos que o layout é o anchor
     layout: 'anchor',
-
     items: [
         {
             xtype: 'panel',
