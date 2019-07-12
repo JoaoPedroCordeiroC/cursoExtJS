@@ -30,9 +30,3 @@ Ext.define('Curso.Janela', {
 
     ]
 });
-
-Ext.onReady(function() {
-
-    Ext.create('Curso.Janela');
-    
-});
